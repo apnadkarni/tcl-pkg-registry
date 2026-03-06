@@ -23,6 +23,7 @@ Submit a PR adding your package to packages.json. The registry is automatically 
 | `sources[].url`        | string  | Repository URL                      |
 | `sources[].method`     | string  | `git` or `fossil` (optional)        |
 | `sources[].web`        | string  | Documentation URL (optional)        |
+| `sources[].artifacts`  | string  | This specifies the URL where the built releases, tarballs, or binaries are hosted. (optional) |
 | `sources[].author`     | string  | Package author/maintainer           |
 | `sources[].extension`  | boolean | `true` if this is a compiled (C/C++/etc...) extension (requires build or binaries), `false` or omit for pure Tcl scripts (optional) |
 | `sources[].license`    | string  | SPDX license identifier             |
