@@ -2200,7 +2200,7 @@
     "name": "tclcsv",
     "sources": [
       {
-        "url": "https://github.com/apnadkarni/tclcsv",
+        "url": "https://github.com/apnadkarni/tcl-csv",
         "web": "https://tclcsv.magicsplat.com",
         "method": "git",
         "extension": true,
