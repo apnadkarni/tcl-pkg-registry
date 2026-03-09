@@ -2175,7 +2175,7 @@
         "method": "git",
         "extension": true,
         "author": "Ashok P. Nadkarni",
-        "license": "BSD-2-Clause",
+        "license": "BSD-2-Clause"
       }
     ],
     "tags": ["programming-language"],
@@ -2190,7 +2190,7 @@
         "method": "git",
         "extension": true,
         "author": "Ashok P. Nadkarni",
-        "license": "BSD-2-Clause",
+        "license": "BSD-2-Clause"
       }
     ],
     "tags": ["programming-language", "vector-processing", "data-structure"],
