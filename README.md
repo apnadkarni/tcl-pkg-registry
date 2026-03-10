@@ -77,7 +77,7 @@ Submit a PR adding your package to packages.json. The registry is automatically 
 > [!NOTE]  
 > The `web` field is optional and points to documentation if different from the repository `URL`.
 
-## My package is incorrectly listed
+## My Package is incorrectly listed
 
 Please open an issue at [registry/issues](https://github.com/tcltk-pkgs/registry/issues)
 
