@@ -20,6 +20,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y tcl tcllib
 
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Validate packages.json
         id: validate
         run: tclsh metadata/validate_packages.tcl
