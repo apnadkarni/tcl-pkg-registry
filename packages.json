@@ -3198,5 +3198,120 @@
     ],
     "tags": ["snappy", "compression"],
     "description": "Tcl module for the snappy google library, a fast compressor / decompressor."
+  },
+  {
+    "name": "pix",
+    "sources": [
+      {
+        "url": "https://github.com/nico-robert/pix",
+        "web": "https://nico-robert.github.io/pix/pix.html",
+        "method": "git",
+        "extension": true,
+        "author": "Nicolas Robert",
+        "license": "MIT",
+        "artifacts": "https://github.com/nico-robert/pix/releases"
+      }
+    ],
+    "tags": ["nim", "image", "graphics"],
+    "description": "Tcl/Tk wrapper around Pixie, a full-featured 2D graphics library written in Nim."
+  },
+  {
+    "name": "tresvg",
+    "sources": [
+      {
+        "url": "https://github.com/nico-robert/tresvg",
+        "method": "git",
+        "author": "Nicolas Robert",
+        "license": "MIT",
+        "artifacts": "https://github.com/nico-robert/tresvg/releases"
+      }
+    ],
+    "tags": ["svg", "image", "ffi-bindings", "critcl", "resvg"],
+    "description": "Tcl wrapper around resvg, a library for rendering SVG images."
+  },
+  {
+    "name": "tomato",
+    "sources": [
+      {
+        "url": "https://github.com/nico-robert/tomato",
+        "web": "https://nico-robert.github.io/tomato/tomato.html",
+        "method": "git",
+        "author": "Nicolas Robert",
+        "license": "MIT",
+        "artifacts": "https://github.com/nico-robert/tomato/releases"
+      }
+    ],
+    "tags": ["math", "geometry", "vector", "matrix", "linear-algebra"],
+    "description": "math::geometry Tcl package."
+  },
+  {
+    "name": "zesty",
+    "sources": [
+      {
+        "url": "https://github.com/nico-robert/zesty",
+        "method": "git",
+        "author": "Nicolas Robert",
+        "license": "MIT",
+        "artifacts": "https://github.com/nico-robert/zesty/releases"
+      }
+    ],
+    "tags": ["terminal", "color", "formatting"],
+    "description": "A Tcl library for rich terminal output."
+  },
+  {
+    "name": "tcl-miniz",
+    "sources": [
+      {
+        "url": "https://github.com/nico-robert/tcl-miniz",
+        "method": "git",
+        "author": "Nicolas Robert",
+        "license": "MIT",
+        "artifacts": "https://github.com/nico-robert/tcl-miniz/releases"
+      }
+    ],
+    "tags": ["zip", "compression", "archive", "zlib", "ffi-bindings"],
+    "description": "Tcl bindings for miniz."
+  },
+  {
+    "name": "magic",
+    "sources": [
+      {
+        "url": "https://github.com/nico-robert/magic",
+        "method": "git",
+        "author": "Nicolas Robert",
+        "license": "MIT",
+        "artifacts": "https://github.com/nico-robert/magic/releases"
+      }
+    ],
+    "tags": ["filesystem", "libmagic", "ffi-bindings"],
+    "description": "Tcl bindings for libmagic."
+  },
+  {
+    "name": "haru",
+    "sources": [
+      {
+        "url": "https://github.com/nico-robert/haru",
+        "method": "git",
+        "author": "Nicolas Robert",
+        "license": "MIT",
+        "artifacts": "https://github.com/nico-robert/haru/releases"
+      }
+    ],
+    "tags": ["pdf", "libharu", "ffi-bindings"],
+    "description": "Tcl bindings for the libharu library."
+  },
+  {
+    "name": "ticklecharts",
+    "sources": [
+      {
+        "url": "https://github.com/nico-robert/ticklecharts",
+        "method": "git",
+        "author": "Nicolas Robert",
+        "license": "MIT",
+        "artifacts": "https://github.com/nico-robert/ticklecharts/releases"
+      }
+    ],
+    "tags": ["web", "charts"],
+    "description": "Tcl wrapper around Apache ECharts."
   }
 ]
