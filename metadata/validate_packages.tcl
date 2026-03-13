@@ -57,23 +57,20 @@ foreach pkg $packages {
     
     if {[dict exists $pkg name]} {
         set pkg_name [dict get $pkg name]
-        
-        # Vérification doublons
+
         if {[info exists seen_names($pkg_name)]} {
             lappend errors "Duplicate package name: '$pkg_name' (appears at index #$seen_names($pkg_name) and #$idx)"
         } else {
             set seen_names($pkg_name) $idx
         }
-        
-        # Détection si package existait déjà
+
         if {[info exists existing_names($pkg_name)]} {
             set is_new 0
         }
     } else {
         lappend errors "$pkg_name: missing required field 'name'"
     }
-    
-    # Validation sources (erreurs bloquantes pour tous)
+
     if {![dict exists $pkg sources]} {
         lappend errors "$pkg_name: missing required field 'sources'"
     } elseif {[llength [dict get $pkg sources]] == 0} {
@@ -84,7 +81,6 @@ foreach pkg $packages {
         array set seen_urls {}
         
         foreach src $srcs {
-            # url obligatoire (erreur pour tous)
             if {![dict exists $src url] || [dict get $src url] eq ""} {
                 lappend errors "$pkg_name: source #$src_idx missing required 'url'"
             } else {
@@ -97,15 +93,13 @@ foreach pkg $packages {
                     set seen_urls($url) $src_idx
                 }
             }
-            
-            # method optionnel - warning seulement si nouveau package
+
             if {![dict exists $src method] || [dict get $src method] eq ""} {
                 if {$is_new} {
                     lappend new_warnings "$pkg_name: source #$src_idx missing 'method' (optional but recommended)"
                 }
             }
-            
-            # artifacts (warning pour tous mais catégorisé)
+
             if {[dict exists $src artifacts]} {
                 set artifacts [dict get $src artifacts]
                 if {[regexp {\.(zip|tar\.gz|tgz|exe|msi|dmg|deb|rpm)$} $artifacts]} {
@@ -118,8 +112,7 @@ foreach pkg $packages {
         }
         unset seen_urls
     }
-    
-    # Tags et description : warning seulement pour nouveaux packages
+
     if {$is_new} {
         if {![dict exists $pkg tags] || [llength [dict get $pkg tags]] == 0} {
             lappend errors "$pkg_name: no tags defined."
