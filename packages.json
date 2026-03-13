@@ -3541,7 +3541,7 @@
         "artifacts": "https://core.tcl-lang.org/tcltls/wiki/Download"
       }
     ],
-    "tags": ["tls","security"],
+    "tags": ["tls", "security"],
     "description": "TLS support for Tcl applications"
   },
   {
@@ -3558,7 +3558,7 @@
     "description": "Spotify Web API for Tcl"
   },
   {
-    "name": "Rtcl",
+    "name": "rtcl",
     "sources": [
       {
         "url": "https://github.com/mattadams/Rtcl",
@@ -3624,5 +3624,35 @@
     ],
     "tags": ["objective-c", "cocoa"],
     "description": "Tcl bindings to Objective C and Cocoa"
+  },
+  {
+    "name": "tbcx",
+    "sources": [
+      {
+        "url": "https://github.com/bagnongithub/tbcx",
+        "method": "git",
+        "extension": true,
+        "author": "Miguel Bañón",
+        "license": "MIT",
+        "artifacts": "https://github.com/bagnongithub/tbcx/releases"
+      }
+    ],
+    "tags": ["bytecode", "disassembler", "compiler", "assembler"],
+    "description": "TBCX — Precompiled Tcl 9.1+ Bytecode (save / load / dump)"
+  },
+  {
+    "name": "oratcl",
+    "sources": [
+      {
+        "url": "https://github.com/bagnongithub/oratcl",
+        "method": "git",
+        "extension": true,
+        "author": "Miguel Bañón",
+        "license": "MIT",
+        "artifacts": "https://github.com/bagnongithub/oratcl/releases"
+      }
+    ],
+    "tags": ["oracle", "database", "odpi-c"],
+    "description": "Tcl 9 extension that re‑implements Oratcl on top of ODPI‑C"
   }
 ]
