@@ -5,6 +5,10 @@
 
 Central registry of third-party packages and extensions for `Tcl/Tk`.
 
+![Packages](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/tcltk-pkgs/registry/master/metadata/packages-meta.json&query=$%5B0%5D.total_packages&label=📦%20Packages&color=informational)
+![Contributors](https://img.shields.io/github/contributors/tcltk-pkgs/registry?label=👥%20Contributors&color=success)
+![Version](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/tcltk-pkgs/registry/master/metadata/packages-meta.json&query=$%5B0%5D.version&label=📝%20Version&color=orange)
+
 ## Browse Packages
 
 Visit the **[web](https://tcltk-pkgs.pages.dev)** interface
