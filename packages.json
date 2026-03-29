@@ -1658,7 +1658,7 @@
         "url": "https://core.tcl-lang.org/tcllib/dir?name=modules/textutil&ci=trunk",
         "method": "fossil",
         "web": "https://core.tcl-lang.org/tcllib/doc/trunk/embedded/md/tcllib/files/modules/textutil/split.md",
-        "author": "Andreas Kuprie",
+        "author": "Andreas Kupries",
         "license": "Tcl/Tk License"
       }
     ],
@@ -3739,6 +3739,7 @@
         "url": "https://core.tcl-lang.org/tdom/dir?ci=tip",
         "method": "fossil",
         "author": "Rolf Ade",
+        "extension": true,
         "license": "Mozilla Public License 2.0"
       }
     ],
@@ -3766,5 +3767,134 @@
     ],
     "tags": ["blake3", "crypto", "hash", "algorithm"],
     "description": "BLAKE3 hashing through libblake3"
+  },
+  {
+    "name": "critcl",
+    "sources": [
+      {
+        "url": "https://github.com/andreas-kupries/critcl",
+        "method": "git",
+        "web": "http://andreas-kupries.github.io/critcl",
+        "author": "Andreas Kupries",
+        "license": "BSD-3 license"
+      }
+    ],
+    "tags": ["c-code", "tcl-binding", "runtime"],
+    "description": "Critcl lets you easily embed C code in Tcl."
+  },
+  {
+    "name": "cawt",
+    "sources": [
+      {
+        "url": "https://www.tcl3d.org/cawt",
+        "web": "https://www.tcl3d.org/cawt/download/CawtReference.html",
+        "author": "Paul Obermeier",
+        "license": "BSD-3 license",
+        "artifacts": "https://www.tcl3d.org/cawt/download.html"
+      }
+    ],
+    "tags": ["com", "twapi", "excel", "word", "powerpoint", "outlook"],
+    "description": "A high-level Tcl interface for scripting Microsoft Windows® applications having a COM interface"
+  },
+  {
+    "name": "mawt",
+    "sources": [
+      {
+        "url": "https://www.tcl3d.org/mawt",
+        "web": "https://www.tcl3d.org/mawt/download/MawtReference.html",
+        "author": "Paul Obermeier",
+        "license": "BSD-3 license",
+        "artifacts": "https://www.tcl3d.org/mawt/download.html"
+      }
+    ],
+    "tags": ["movie", "ffmpeg", "automation"],
+    "description": "A a Tcl package based on FFmpeg. It provides high level procedures for movie automation with Tcl."
+  },
+  {
+    "name": "pawt",
+    "sources": [
+      {
+        "url": "https://www.tcl3d.org/pawt",
+        "web": "https://www.tcl3d.org/pawt/download/PawtReference.html",
+        "author": "Paul Obermeier",
+        "license": "BSD-3 license",
+        "artifacts": "https://www.tcl3d.org/pawt/download.html"
+      }
+    ],
+    "tags": ["image", "metadata", "dict"],
+    "description": "A high-level Tcl interface for handling images with byte, short, int, float or double pixel values."
+  },
+  {
+    "name": "hyperhelp",
+    "sources": [
+      {
+        "url": "https://github.com/mittelmark/hyperhelp",
+        "method": "git",
+        "author": "Detlef Groth",
+        "license": "BSD-3-Clause",
+        "artifacts": "https://github.com/mittelmark/hyperhelp/releases"
+      }
+    ],
+    "tags": ["help", "documentation", "markdown", "tk"],
+    "description": "Tcl/Tk package do display Markdown like help pages in your Tcl/Tk applications."
+  },
+  {
+    "name": "tsvg",
+    "sources": [
+      {
+        "url": "https://github.com/mittelmark/tsvg",
+        "web": "https://htmlpreview.github.io/?https://github.com/mittelmark/tsvg/blob/master/tsvg/tsvg.html",
+        "method": "git",
+        "author": "Detlef Groth",
+        "license": "BSD-3-Clause",
+        "artifacts": "https://github.com/mittelmark/tsvg/releases"
+      }
+    ],
+    "tags": ["tcl", "svg"],
+    "description": "Tcl package to create SVG files easily."
+  },
+  {
+    "name": "citer",
+    "sources": [
+      {
+        "url": "https://github.com/mittelmark/citer",
+        "web": "https://htmlpreview.github.io/?https://github.com/mittelmark/citer/blob/master/citer/citer.html",
+        "method": "git",
+        "author": "Detlef Groth",
+        "license": "BSD-3-Clause",
+        "artifacts": "https://github.com/mittelmark/citer/releases"
+      }
+    ],
+    "tags": ["tcl", "bibliographies", "bibtex"],
+    "description": "Tcl package to create bibliographies using Bibtex files."
+  },
+  {
+    "name": "tdot",
+    "sources": [
+      {
+        "url": "https://github.com/mittelmark/tdot",
+        "web": "https://htmlpreview.github.io/?https://raw.githubusercontent.com/mittelmark/tdot/master/tdot/tdot.html",
+        "method": "git",
+        "author": "Detlef Groth",
+        "license": "BSD-3-Clause",
+        "artifacts": "https://github.com/mittelmark/tdot/releases"
+      }
+    ],
+    "tags": ["diagrams", "tk", "graphviz"],
+    "description": "Tcl/Tk package to create GraphViz diagrams using Tcl like syntax."
+  },
+  {
+    "name": "tcrd",
+    "sources": [
+      {
+        "url": "https://github.com/mittelmark/tcrd",
+        "method": "git",
+        "author": "Detlef Groth",
+        "license": "BSD-3-Clause",
+        "artifacts": "https://github.com/mittelmark/tcrd/releases"
+      }
+    ],
+    "tags": ["diagrams", "chord", "sheets"],
+    "description": "Writing chord sheets from lyrics and chord diagrams using Tcl."
   }
 ]
