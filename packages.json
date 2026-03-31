@@ -2084,7 +2084,7 @@
         "artifacts": "https://github.com/ray2501/tkvlc/releases"
       }
     ],
-    "tags": ["tk-interface", "vlc-embedding"],
+    "tags": ["tk-interface", "vlc-embedding", "tk"],
     "description": "A demo to embed libVLC to Tk toolkit widget (Tcl version)"
   },
   {
@@ -2116,7 +2116,7 @@
         "artifacts": "https://sourceforge.net/projects/magicsplat/files/cffi/"
       }
     ],
-    "tags": ["ffi", ""],
+    "tags": ["ffi"],
     "description": "Permits calling C functions in shared libraries from Tcl scripts."
   },
   {
@@ -3212,7 +3212,7 @@
         "artifacts": "https://github.com/nico-robert/pix/releases"
       }
     ],
-    "tags": ["nim", "image", "graphics"],
+    "tags": ["nim", "image", "graphics", "tk"],
     "description": "Tcl/Tk wrapper around Pixie, a full-featured 2D graphics library written in Nim."
   },
   {
@@ -3323,7 +3323,7 @@
         "license": "Unlicense"
       }
     ],
-    "tags": ["javascript", "notebook", "jupyter"],
+    "tags": ["javascript", "notebook", "jupyter", "tk"],
     "description": "Taygete Scrap Book - a poor man's clone of Jupyter Notebook"
   },
   {
@@ -3336,7 +3336,7 @@
         "license": "Unlicense"
       }
     ],
-    "tags": ["webview", "ui", "html5", "js-bindings"],
+    "tags": ["webview", "ui", "html5", "js-bindings", "tk"],
     "description": "Tcl extension that provides API for the webview library"
   },
   {
@@ -3390,7 +3390,7 @@
         "artifacts": "https://sourceforge.net/projects/irrational-numbers/files/tclBlend2d"
       }
     ],
-    "tags": ["blend2d", "image", "graphics"],
+    "tags": ["blend2d", "image", "graphics", "tk"],
     "description": "Tcl meets Blend2d (high performance 2D vector graphics engine)."
   },
   {
@@ -3488,7 +3488,7 @@
         "artifacts": "https://github.com/petasis/tkdnd/releases"
       }
     ],
-    "tags": ["drag-and-drop", "tk-extension"],
+    "tags": ["drag-and-drop", "tk-extension", "tk"],
     "description": "TkDND is an extension that adds native drag & drop capabilities to the Tk toolkit"
   },
   {
@@ -3677,7 +3677,7 @@
         "artifacts": "https://www.nemethi.de"
       }
     ],
-    "tags": ["mega-widget", "scrolling", "notebook", "tile"],
+    "tags": ["mega-widget", "scrolling", "notebook", "tile", "tk"],
     "description": "Scrolling mega-widgets library providing scrollarea, scrollsync, scrollableframe with mouse wheel and touchpad support."
   },
   {
@@ -3690,7 +3690,7 @@
         "artifacts": "https://www.nemethi.de"
       }
     ],
-    "tags": ["callback", "validation", "widget", "entry"],
+    "tags": ["callback", "validation", "widget", "entry", "tk"],
     "description": "Widget callback package for associating before/after commands to Tk widget operations like insert, delete, select with input validation support."
   },
   {
@@ -3703,7 +3703,7 @@
         "artifacts": "https://www.nemethi.de"
       }
     ],
-    "tags": ["mega-widget", "entry", "date", "time"],
+    "tags": ["mega-widget", "entry", "date", "time", "tk"],
     "description": "Multi-entry mega-widget with multiple entry fields separated by labels. Supports date/time, fixed-point numbers, IP/IPv6 addresses, and phone numbers."
   },
   {
@@ -3716,7 +3716,7 @@
         "artifacts": "https://www.nemethi.de"
       }
     ],
-    "tags": ["mega-widget", "table", "tree"],
+    "tags": ["mega-widget", "table", "tree", "tk"],
     "description": "Multi-column listbox and tree mega-widget with resizable columns, interactive sorting, cell editing, and embedded images/windows support."
   },
   {
