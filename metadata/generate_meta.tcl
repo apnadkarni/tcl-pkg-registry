@@ -45,7 +45,7 @@ proc parse_github_repo {url} {
     return ""
 }
 
-proc http_get {url {type "raw"}} {
+proc http_get {url {type "raw"} {retry 2}} {
     global env TIMEOUT
 
     set hdrs [list -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28"]
@@ -63,10 +63,16 @@ proc http_get {url {type "raw"}} {
     set code [string trim [lindex $lines end]]
     set body [string trim [join [lrange $lines 0 end-1] "\n"]]
 
+    if {$code in {502 503} && $retry > 0} {
+        after 1000
+        return [http_get $url $type [expr {$retry - 1}]]
+    }
+
     set json {}
     if {$type eq "json" && $code == 200} {
         catch {set json [::json::json2dict $body]}
     }
+
     return [dict create code $code body $body json $json]
 }
 
