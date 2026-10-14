@@ -355,7 +355,7 @@ proc process_fossil {url {modname ""}} {
             dict set meta last_tag $latest_tag
 
             if {[dict get $meta last_release_date] eq "" && $latest_tag ne ""} {
-                set tag_date [exec git for-each-ref --format='%(creatordate:iso8601)' refs/tags/$latest_tag]
+                set tag_date [exec git for-each-ref {--format=%(creatordate:iso8601)} refs/tags/$latest_tag]
                 set tag_date [string map {T " " Z ""} $tag_date]
                 dict set meta last_release_date $tag_date
             }
@@ -455,7 +455,9 @@ proc process_git {url {modname ""}} {
         }
 
         set meta [fetch_github_data $url $module_path]
-        dict set meta last_tag [dict get $meta latest_release]
+        # No GitHub release ("none"): leave last_tag empty so tags are looked up below
+        set rel [dict get $meta latest_release]
+        dict set meta last_tag [expr {$rel eq "none" ? "" : $rel}]
 
         if {[dict get $meta last_tag] eq ""} {
              catch {
@@ -472,8 +474,9 @@ proc process_git {url {modname ""}} {
                 if {$latest_tag ne "" && [dict get $meta last_release_date] eq ""} {
                     set tmp [file join [expr {[info exists env(TMPDIR)] ? $env(TMPDIR) : "/tmp"}] "git-tag-[expr {int(rand()*10000)}]"]
                     try {
-                        exec git clone --depth 1 --filter=blob:none --no-checkout $url $tmp 2>@1
-                        set tag_date [exec git -C $tmp for-each-ref --format='%(creatordate:iso8601)' refs/tags/$latest_tag]
+                        # --branch: a plain --depth 1 clone does not fetch the tag
+                        exec git clone --depth 1 --filter=blob:none --no-checkout --branch $latest_tag $url $tmp 2>@1
+                        set tag_date [exec git -C $tmp for-each-ref {--format=%(creatordate:iso8601)} refs/tags/$latest_tag]
                         set tag_date [string map {T " " Z ""} $tag_date]
                         dict set meta last_release_date $tag_date
                     } finally {
@@ -539,7 +542,7 @@ proc process_git {url {modname ""}} {
         dict set meta last_tag $latest_tag
 
         if {$latest_tag ne ""} {
-            set tag_date [exec git -C $tmp for-each-ref --format='%(creatordate:iso8601)' refs/tags/$latest_tag]
+            set tag_date [exec git -C $tmp for-each-ref {--format=%(creatordate:iso8601)} refs/tags/$latest_tag]
             set tag_date [string map {T " " Z ""} $tag_date]
             dict set meta last_release_date $tag_date
         }
@@ -564,12 +567,65 @@ proc get_latest_tag {tag_list} {
         return {}
     }
 
-    return [lindex [lsort -command version_compare $filtered] end]
+    # Keep only version-like tags,
+    # unless none of them looks like a version
+    set versioned {}
+    foreach tag $filtered {
+        if {[parse_version $tag] ne ""} {
+            lappend versioned $tag
+        }
+    }
+    if {[llength $versioned] > 0} {
+        set filtered $versioned
+    }
+
+    # Keep only tags sharing the most common prefix (text before the first digit)
+    set counts [dict create]
+    set prefixes [dict create]
+    foreach tag $filtered {
+        regexp {^(\D*)} $tag -> prefix
+        set prefix [string trimright [string tolower $prefix] "-_. v"]
+        dict set prefixes $tag $prefix
+        dict incr counts $prefix
+    }
+    set best [tcl::mathfunc::max {*}[dict values $counts]]
+    set candidates {}
+    foreach tag $filtered {
+        if {[dict get $counts [dict get $prefixes $tag]] == $best} {
+            lappend candidates $tag
+        }
+    }
+
+    return [lindex [lsort -command version_compare $candidates] end]
+}
+
+# Split a tag into {numbers rank prenum}
+proc parse_version {tag} {
+    if {![regexp {^\D*(\d+(?:[-._]\d+)*)(.*)$} $tag -> numpart rest]} {
+        return {}
+    }
+    # scan: "08" -> 8 (avoids octal/string comparison in expr)
+    set nums [lmap n [regexp -all -inline {\d+} $numpart] {scan $n %d}]
+    if {$rest eq ""} {
+        return [list $nums 3 0]
+    }
+    if {[regexp -nocase {^[-._]?(alpha|beta|pre|rc|a|b)[-._]?(\d*)$} $rest -> kind prenum]} {
+        set rank [dict get {alpha 0 a 0 pre 0 beta 1 b 1 rc 2} [string tolower $kind]]
+        return [list $nums $rank [expr {$prenum eq "" ? 0 : [scan $prenum %d]}]]
+    }
+
+    return {}
 }
 
 proc version_compare {a b} {
-    set na [regexp -all -inline {\d+} $a]
-    set nb [regexp -all -inline {\d+} $b]
+    set pa [parse_version $a]
+    set pb [parse_version $b]
+    # Fallback for non version-like tags
+    if {$pa eq ""} {set pa [list [lmap n [regexp -all -inline {\d+} $a] {scan $n %d}] 3 0]}
+    if {$pb eq ""} {set pb [list [lmap n [regexp -all -inline {\d+} $b] {scan $n %d}] 3 0]}
+
+    lassign $pa na ra pra
+    lassign $pb nb rb prb
     set len [expr {max([llength $na],[llength $nb])}]
     for {set i 0} {$i < $len} {incr i} {
         set va [expr {$i < [llength $na] ? [lindex $na $i] : 0}]
@@ -577,6 +633,8 @@ proc version_compare {a b} {
         if {$va < $vb} {return -1}
         if {$va > $vb} {return  1}
     }
+    if {$ra != $rb} {return [expr {$ra < $rb ? -1 : 1}]}
+    if {$pra != $prb} {return [expr {$pra < $prb ? -1 : 1}]}
 
     return 0
 }
