@@ -17,6 +17,7 @@ array set FOSSIL_MIRRORS {
 set github_cache [dict create]
 set github_tree_cache [dict create]
 set fossil_cache [dict create]
+set tag_cache [dict create]
 array set existing_dates {}
 
 proc to_huddle {val type} {
@@ -437,6 +438,61 @@ proc process_fossil {url {modname ""}} {
     return $meta
 }
 
+proc git_error_line {msg} {
+    set lines [split [string trim $msg] \n]
+    set lines [lsearch -all -inline -not -exact $lines "child process exited abnormally"]
+    return [lindex $lines end]
+}
+
+# Latest tag and its date for a git repo, cached per URL for the run
+proc lookup_git_tags {url} {
+    global env tag_cache
+
+    if {[dict exists $tag_cache $url]} {
+        return [dict get $tag_cache $url]
+    }
+
+    set result [dict create last_tag "" last_release_date ""]
+    # Failures are cached too.
+    dict set tag_cache $url $result
+
+    # 1. List remote tags
+    try {
+        set raw_tags [exec git ls-remote --tags --refs $url 2>@1]
+    } on error {msg} {
+        puts "    ! Tag listing failed: [git_error_line $msg]"
+        return $result
+    }
+
+    set tag_list {}
+    foreach line [split $raw_tags "\n"] {
+        if {[regexp {refs/tags/(.*)} $line -> t]} {
+            lappend tag_list $t
+        }
+    }
+    set latest_tag [get_latest_tag $tag_list]
+    if {$latest_tag eq ""} {
+        return $result
+    }
+    dict set result last_tag $latest_tag
+    dict set tag_cache $url $result
+
+    # 2. Read the tag date
+    set tmp [file join [expr {[info exists env(TMPDIR)] ? $env(TMPDIR) : "/tmp"}] "git-tag-[pid]-[clock clicks]"]
+    try {
+        exec git clone --depth 1 --filter=blob:none --no-checkout --branch $latest_tag $url $tmp 2>@1
+        set tag_date [exec git -C $tmp for-each-ref {--format=%(creatordate:iso8601)} refs/tags/$latest_tag]
+        dict set result last_release_date [string map {T " " Z ""} $tag_date]
+        dict set tag_cache $url $result
+    } on error {msg} {
+        puts "    ! Tag date lookup failed for '$latest_tag': [git_error_line $msg]"
+    } finally {
+        file delete -force $tmp
+    }
+
+    return $result
+}
+
 proc process_git {url {modname ""}} {
     global env MAX_COMMITS
     set repo [parse_github_repo $url]
@@ -460,29 +516,10 @@ proc process_git {url {modname ""}} {
         dict set meta last_tag [expr {$rel eq "none" ? "" : $rel}]
 
         if {[dict get $meta last_tag] eq ""} {
-             catch {
-                set raw_tags [exec git ls-remote --tags --refs $url]
-                set tag_list {}
-                foreach line [split $raw_tags "\n"] {
-                    if {[regexp {refs/tags/(.*)} $line -> t]} {
-                        lappend tag_list $t
-                    }
-                }
-                set latest_tag [get_latest_tag $tag_list]
-                dict set meta last_tag $latest_tag
-
-                if {$latest_tag ne "" && [dict get $meta last_release_date] eq ""} {
-                    set tmp [file join [expr {[info exists env(TMPDIR)] ? $env(TMPDIR) : "/tmp"}] "git-tag-[expr {int(rand()*10000)}]"]
-                    try {
-                        # --branch: a plain --depth 1 clone does not fetch the tag
-                        exec git clone --depth 1 --filter=blob:none --no-checkout --branch $latest_tag $url $tmp 2>@1
-                        set tag_date [exec git -C $tmp for-each-ref {--format=%(creatordate:iso8601)} refs/tags/$latest_tag]
-                        set tag_date [string map {T " " Z ""} $tag_date]
-                        dict set meta last_release_date $tag_date
-                    } finally {
-                        file delete -force $tmp
-                    }
-                }
+            set tags [lookup_git_tags $url]
+            dict set meta last_tag [dict get $tags last_tag]
+            if {[dict get $meta last_release_date] eq ""} {
+                dict set meta last_release_date [dict get $tags last_release_date]
             }
         }
         return $meta
