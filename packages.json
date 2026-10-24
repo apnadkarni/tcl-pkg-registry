@@ -8223,5 +8223,20 @@
     ],
     "tags": ["email", "mime", "internet"],
     "description": "Self-contained, RFC-compliant fork of tcllib's mime package for Tcl 8.6/9."
+  },
+  {
+    "name": "bitarray",
+    "sources": [
+      {
+        "url": "https://github.com/rocketship88/tcl-bit-array-extension",
+        "method": "git",
+        "extension": true,
+        "author": "Eric Taylor",
+        "license": "MIT",
+        "artifacts": "https://github.com/rocketship88/tcl-bit-array-extension/releases"
+      }
+    ],
+    "tags": ["bit-array", "bitwise", "data-structure"],
+    "description": "Fast bit arrays in Tcl."
   }
 ]
