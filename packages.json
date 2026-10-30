@@ -3207,6 +3207,20 @@
     "description": "Tcl module for the snappy google library, a fast compressor / decompressor."
   },
   {
+    "name": "jinja2",
+    "sources": [
+      {
+        "url": "https://github.com/jerily/jinja2-tcl",
+        "method": "git",
+        "extension": true,
+        "author": "Neofytos Dimitriou",
+        "license": "MIT"
+      }
+    ],
+    "tags": ["jinja2", "templates"],
+    "description": "A Tcl extension for rendering a deterministic Jinja2-style template subset against JSON data."
+  },
+  {
     "name": "pix",
     "sources": [
       {
