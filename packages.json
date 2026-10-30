@@ -3214,8 +3214,7 @@
         "method": "git",
         "extension": true,
         "author": "Neofytos Dimitriou",
-        "license": "MIT",
-        "artifacts": "https://github.com/jerily/snappy-tcl/releases"
+        "license": "MIT"
       }
     ],
     "tags": ["jinja2", "templates"],
