@@ -2160,6 +2160,13 @@
         "author": "Ashok P. Nadkarni",
         "license": "BSD-3-Clause",
         "artifacts": "https://github.com/apnadkarni/tcl-cmark/releases"
+      },
+      {
+        "url": "https://github.com/jerily/cmark-gfm-tcl",
+        "method": "git",
+        "extension": true,
+        "author": "Neofytos Dimitriou",
+        "license": "MIT"
       }
     ],
     "tags": ["markdown"],
@@ -3219,6 +3226,34 @@
     ],
     "tags": ["jinja2", "templates"],
     "description": "A Tcl extension for rendering a deterministic Jinja2-style template subset against JSON data."
+  },
+  {
+    "name": "tpersist",
+    "sources": [
+      {
+        "url": "https://github.com/jerily/tpersist",
+        "method": "git",
+        "extension": true,
+        "author": "Neofytos Dimitriou",
+        "license": "MIT"
+      }
+    ],
+    "tags": ["database", "sql", "sqlite", "postgresql", "mysql"],
+    "description": "Database Persistence Layer for TCL."
+  },
+  {
+    "name": "tjv",
+    "sources": [
+      {
+        "url": "https://github.com/jerily/tjv",
+        "method": "git",
+        "extension": true,
+        "author": "Neofytos Dimitriou",
+        "license": "MIT"
+      }
+    ],
+    "tags": ["json", "validation", "schema"],
+    "description": "Tcl/C extension for JSON validation."
   },
   {
     "name": "pix",
