@@ -8294,10 +8294,11 @@
       {
         "url": "https://github.com/mpcjanssen/tclzmq",
         "method": "git",
-        "author": "Mark Janssen"
+        "author": "Mark Janssen",
+        "license": "Unlicense"
       }
     ],
-    "tags": ["protocols", "ZeroMQ"],
+    "tags": ["protocols", "zeromq"],
     "description": "Pure Tcl implementation of ZeroMQ."
   }
 ]
