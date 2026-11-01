@@ -3200,6 +3200,21 @@
     "description": "Tcl module for the snappy google library, a fast compressor / decompressor."
   },
   {
+    "name": "tpersist",
+    "sources": [
+      {
+        "url": "https://github.com/jerily/tpersist",
+        "method": "git",
+        "extension": true,
+        "author": "Neofytos Dimitriou",
+        "license": "MIT",
+        "artifacts": "https://github.com/jerily/tpersist/releases"
+      }
+    ],
+    "tags": ["database", "TDBC"],
+    "description": "A Tcl extension for building SQL statements and accessing databases through TDBC."
+  },
+  {
     "name": "pix",
     "sources": [
       {
